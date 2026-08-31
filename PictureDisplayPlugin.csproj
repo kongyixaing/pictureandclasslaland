@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <EnableDynamicLoading>True</EnableDynamicLoading>
+    <LangVersion>latest</LangVersion>
+    <Description>ClassIsland 图片展示组件插件，支持本地文件夹和远程 API 图片源。</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ClassIsland.PluginSdk" Version="2.0.0.1">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+    <!-- 显式引用 Avalonia 以确保 XAML 编译目标可用 -->
+    <!-- 运行时 DLL 由宿主 ClassIsland 提供，不包含在插件输出中 -->
+    <PackageReference Include="Avalonia" Version="11.3.6">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="manifest.yml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

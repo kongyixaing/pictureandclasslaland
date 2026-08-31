@@ -1,0 +1,42 @@
+<ci:ComponentBase
+    x:Class="PictureDisplayPlugin.Components.PictureDisplayComponent"
+    x:TypeArguments="models:PictureDisplaySettings"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ci="http://classisland.tech/schemas/xaml/core"
+    xmlns:models="clr-namespace:PictureDisplayPlugin.Models">
+
+    <Grid x:Name="RootGrid">
+        <!-- 背景层 -->
+        <Border x:Name="BackgroundBorder" Background="Transparent" />
+
+        <!-- 图片层 -->
+        <Image x:Name="ImageDisplay"
+               Stretch="UniformToFill"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center" />
+
+        <!-- 文件名层 -->
+        <Border x:Name="FileNameBorder"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                Background="#80000000"
+                CornerRadius="3"
+                Padding="8,2"
+                IsVisible="False"
+                Margin="0,0,0,4">
+            <TextBlock x:Name="FileNameText"
+                       Foreground="White"
+                       FontSize="11" />
+        </Border>
+
+        <!-- 占位文本层 -->
+        <TextBlock x:Name="PlaceholderText"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Foreground="#90FFFFFF"
+                   FontSize="13"
+                   Text="暂无图片" />
+    </Grid>
+
+</ci:ComponentBase>

@@ -1,0 +1,135 @@
+<ci:ComponentBase
+    x:Class="PictureDisplayPlugin.Components.PictureDisplaySettingsControl"
+    x:TypeArguments="models:PictureDisplaySettings"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ci="http://classisland.tech/schemas/xaml/core"
+    xmlns:models="clr-namespace:PictureDisplayPlugin.Models">
+
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                  VerticalScrollBarVisibility="Auto"
+                  Padding="16,8">
+        <StackPanel Spacing="12" MaxWidth="500">
+
+            <!-- 图片来源 -->
+            <StackPanel Spacing="4">
+                <TextBlock Text="图片来源" FontWeight="SemiBold" FontSize="14" />
+                <ComboBox x:Name="SourceTypeComboBox" HorizontalAlignment="Stretch">
+                    <ComboBoxItem Content="本地文件夹" />
+                    <ComboBoxItem Content="远程 API" />
+                </ComboBox>
+            </StackPanel>
+
+            <!-- 本地文件夹路径 -->
+            <StackPanel x:Name="LocalFolderPanel" Spacing="4" IsVisible="True">
+                <TextBlock Text="本地文件夹路径" FontWeight="SemiBold" FontSize="14" />
+                <Grid ColumnDefinitions="*,Auto" Margin="0">
+                    <TextBox x:Name="LocalFolderPathTextBox"
+                             Grid.Column="0"
+                             Watermark="选择图片文件夹路径"
+                             Margin="0,0,8,0" />
+                    <Button x:Name="BrowseButton"
+                            Grid.Column="1"
+                            Content="浏览..."
+                            Click="BrowseButton_OnClick" />
+                </Grid>
+            </StackPanel>
+
+            <!-- 远程 API 设置 -->
+            <StackPanel x:Name="RemoteApiPanel" Spacing="8" IsVisible="False">
+                <!-- API 地址 -->
+                <StackPanel Spacing="4">
+                    <TextBlock Text="API 服务器地址" FontWeight="SemiBold" FontSize="14" />
+                    <TextBox x:Name="ApiBaseUrlTextBox"
+                             Watermark="如 http://localhost:5001"
+                             HorizontalAlignment="Stretch" />
+                    <TextBlock Text="Picture &amp; Videos 服务的基础地址，包含 http:// 或 https://"
+                               FontSize="11" Foreground="#808080" />
+                </StackPanel>
+
+                <!-- API 返回格式 -->
+                <StackPanel Spacing="4">
+                    <TextBlock Text="API 类型" FontWeight="SemiBold" FontSize="14" />
+                    <ComboBox x:Name="ApiFormatComboBox" HorizontalAlignment="Stretch">
+                        <ComboBoxItem Content="Picture &amp; Videos API（推荐）" />
+                        <ComboBoxItem Content="直接图片 URL" />
+                        <ComboBoxItem Content="JSON URL 数组" />
+                        <ComboBoxItem Content="GitHub Contents API" />
+                    </ComboBox>
+                </StackPanel>
+
+                <!-- 用户名 -->
+                <StackPanel x:Name="ApiAuthPanel" Spacing="4">
+                    <TextBlock Text="用户名" FontWeight="SemiBold" FontSize="14" />
+                    <TextBox x:Name="ApiUsernameTextBox"
+                             Watermark="登录用户名"
+                             HorizontalAlignment="Stretch" />
+                </StackPanel>
+
+                <!-- 密码 -->
+                <StackPanel x:Name="ApiPasswordPanel" Spacing="4">
+                    <TextBlock Text="密码" FontWeight="SemiBold" FontSize="14" />
+                    <TextBox x:Name="ApiPasswordTextBox"
+                             Watermark="登录密码"
+                             PasswordChar="●"
+                             HorizontalAlignment="Stretch" />
+                </StackPanel>
+            </StackPanel>
+
+            <!-- 刷新间隔 -->
+            <StackPanel Spacing="4">
+                <TextBlock Text="图片切换间隔（秒）" FontWeight="SemiBold" FontSize="14" />
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <Slider x:Name="RefreshIntervalSlider"
+                            Minimum="1" Maximum="300" Value="30"
+                            HorizontalAlignment="Stretch"
+                            MinWidth="200" />
+                    <TextBlock x:Name="RefreshIntervalText" Text="30s" VerticalAlignment="Center" MinWidth="50" />
+                </StackPanel>
+            </StackPanel>
+
+            <!-- 图片拉伸模式 -->
+            <StackPanel Spacing="4">
+                <TextBlock Text="图片拉伸模式" FontWeight="SemiBold" FontSize="14" />
+                <ComboBox x:Name="StretchModeComboBox" HorizontalAlignment="Stretch">
+                    <ComboBoxItem Content="填充（可能变形）" />
+                    <ComboBoxItem Content="等比缩放（完整显示）" />
+                    <ComboBoxItem Content="等比填充裁切" />
+                    <ComboBoxItem Content="不缩放" />
+                </ComboBox>
+            </StackPanel>
+
+            <!-- 背景颜色 -->
+            <StackPanel Spacing="4">
+                <TextBlock Text="背景颜色" FontWeight="SemiBold" FontSize="14" />
+                <TextBox x:Name="BackgroundColorTextBox"
+                         Watermark="ARGB 十六进制，如 #FF000000"
+                         HorizontalAlignment="Stretch" />
+            </StackPanel>
+
+            <!-- 圆角 -->
+            <StackPanel Spacing="4">
+                <TextBlock Text="圆角半径" FontWeight="SemiBold" FontSize="14" />
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <Slider x:Name="CornerRadiusSlider"
+                            Minimum="0" Maximum="50" Value="0"
+                            HorizontalAlignment="Stretch"
+                            MinWidth="200" />
+                    <TextBlock x:Name="CornerRadiusText" Text="0px" VerticalAlignment="Center" MinWidth="50" />
+                </StackPanel>
+            </StackPanel>
+
+            <!-- 随机播放 -->
+            <StackPanel Orientation="Horizontal" Spacing="8">
+                <CheckBox x:Name="ShuffleCheckBox" Content="随机播放图片" />
+            </StackPanel>
+
+            <!-- 显示文件名 -->
+            <StackPanel Orientation="Horizontal" Spacing="8">
+                <CheckBox x:Name="ShowFileNameCheckBox" Content="显示当前图片名称" />
+            </StackPanel>
+
+        </StackPanel>
+    </ScrollViewer>
+
+</ci:ComponentBase>

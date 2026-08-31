@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "ClassIsland (Debug)": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Path\\To\\ClassIsland\\ClassIsland.Desktop\\bin\\Debug\\net8.0\\ClassIsland.Desktop.exe",
+      "workingDirectory": "C:\\Path\\To\\ClassIsland\\ClassIsland.Desktop\\bin\\Debug\\net8.0",
+      "commandLineArgs": "--plugin-dev-path $(MSBuildProjectDirectory)\\bin\\Debug\\net8.0"
+    }
+  }
+}
