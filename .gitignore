@@ -1,0 +1,21 @@
+# Build results
+bin/
+obj/
+publish/
+
+# IDE
+.vs/
+.idea/
+.vscode/
+*.user
+
+# Nuget
+*.nupkg
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Plugin dev
+*.dll
+*.pdb
