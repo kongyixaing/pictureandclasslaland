@@ -76,7 +76,7 @@ public partial class PictureDisplaySettingsControl : ComponentBase<PictureDispla
         SourceTypeComboBox.SelectionChanged += (_, _) =>
         {
             if (Settings == null) return;
-            Settings.SourceType = (PictureSourceType)(SourceTypeComboBox.SelectedIndex ?? 0);
+            Settings.SourceType = (PictureSourceType)SourceTypeComboBox.SelectedIndex;
             UpdatePanelVisibility();
         };
 
@@ -96,7 +96,7 @@ public partial class PictureDisplaySettingsControl : ComponentBase<PictureDispla
         {
             if (Settings != null)
             {
-                Settings.ApiFormat = (RemoteApiFormat)(ApiFormatComboBox.SelectedIndex ?? 0);
+                Settings.ApiFormat = (RemoteApiFormat)ApiFormatComboBox.SelectedIndex;
                 UpdateAuthPanelVisibility();
             }
         };
@@ -126,7 +126,7 @@ public partial class PictureDisplaySettingsControl : ComponentBase<PictureDispla
         StretchModeComboBox.SelectionChanged += (_, _) =>
         {
             if (Settings != null)
-                Settings.StretchMode = (ImageStretchMode)(StretchModeComboBox.SelectedIndex ?? 0);
+                Settings.StretchMode = (ImageStretchMode)StretchModeComboBox.SelectedIndex;
         };
 
         BackgroundColorTextBox.LostFocus += (_, _) =>
@@ -246,7 +246,7 @@ public partial class PictureDisplaySettingsControl : ComponentBase<PictureDispla
     /// </summary>
     private void UpdateAuthPanelVisibility()
     {
-        var format = (RemoteApiFormat)(ApiFormatComboBox.SelectedIndex ?? 0);
+        var format = (RemoteApiFormat)ApiFormatComboBox.SelectedIndex;
         var needsAuth = format == RemoteApiFormat.PictureVideosApi;
         ApiAuthPanel.IsVisible = needsAuth;
         ApiPasswordPanel.IsVisible = needsAuth;

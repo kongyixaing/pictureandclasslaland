@@ -1,0 +1,8 @@
+id: com.kongyixaing.picturedisplay
+name: 图片展示组件
+apiVersion: 2.0.0.0
+description: 在主界面上展示图片的组件，支持从本地文件夹或 Picture & Videos API 获取图片并自动轮播。
+entranceAssembly: "PictureDisplayPlugin.dll"
+url: https://github.com/kongyixaing/pictureandclasslaland
+author: kongyixaing
+version: 1.0.0.0
