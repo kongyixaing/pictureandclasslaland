@@ -41,7 +41,7 @@ public class PictureDisplaySettings : INotifyPropertyChanged
     }
 
     /// <summary>
-    /// 远程 API 基础地址（如 http://localhost:5001）
+    /// 远程 API 基础地址（如 http://localhost:5001/pic）
     /// </summary>
     public string ApiBaseUrl
     {

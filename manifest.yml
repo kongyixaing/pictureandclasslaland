@@ -5,4 +5,4 @@ description: 在主界面上展示图片的组件，支持从本地文件夹或 
 entranceAssembly: "PictureDisplayPlugin.dll"
 url: https://github.com/kongyixaing/pictureandclasslaland
 author: kongyixaing
-version: 1.0.0.0
+version: 1.0.1.0

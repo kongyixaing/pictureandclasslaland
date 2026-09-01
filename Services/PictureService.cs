@@ -17,7 +17,8 @@ public class PictureService : IDisposable
     private static readonly HttpClientHandler HttpClientHandler = new()
     {
         UseCookies = true,
-        CookieContainer = new CookieContainer()
+        CookieContainer = new CookieContainer(),
+        AllowAutoRedirect = true
     };
 
     private static readonly HttpClient HttpClient = new(HttpClientHandler)
@@ -194,7 +195,7 @@ public class PictureService : IDisposable
         }
 
         // 获取图片列表（前 100 张）
-        var listUrl = apiBaseUrl.TrimEnd('/') + "/pic/api/picture/list?per_page=100";
+        var listUrl = NormalizeApiBaseUrl(apiBaseUrl) + "/api/picture/list?per_page=100";
         var response = await HttpClient.GetAsync(listUrl);
 
         if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
@@ -251,7 +252,7 @@ public class PictureService : IDisposable
     {
         try
         {
-            var loginUrl = apiBaseUrl.TrimEnd('/') + "/pic/login";
+            var loginUrl = NormalizeApiBaseUrl(apiBaseUrl) + "/login";
             var content = new FormUrlEncodedContent(new[]
             {
                 new KeyValuePair<string, string>("username", username),
@@ -297,7 +298,7 @@ public class PictureService : IDisposable
                 _isLoggedIn = await LoginPictureVideosApiAsync(apiBaseUrl, username, password);
             }
 
-            var randomUrl = apiBaseUrl.TrimEnd('/') + "/pic/api/picture/random";
+            var randomUrl = NormalizeApiBaseUrl(apiBaseUrl) + "/api/picture/random";
             var response = await HttpClient.GetAsync(randomUrl);
 
             if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
@@ -432,6 +433,16 @@ public class PictureService : IDisposable
             return CurrentImage.Title;
 
         return CurrentImage.FileName ?? "";
+    }
+
+    /// <summary>
+    /// 规范化 API 基础地址：去除尾部斜杠。
+    /// 用户输入的地址应包含完整路径（如 http://example.com/pic），
+    /// 代码在此基础上拼接 /login、/api/picture/list 等子路径。
+    /// </summary>
+    private static string NormalizeApiBaseUrl(string apiBaseUrl)
+    {
+        return apiBaseUrl.TrimEnd('/');
     }
 
     private static bool IsImageUrl(string url)
